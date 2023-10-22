@@ -70,7 +70,8 @@ public class CatalogControllerTest
                 Name = "fakeItemA",
                 CatalogTypeId = 2,
                 CatalogBrandId = 1,
-                PictureFileName = "fakeItemA.png"
+                PictureFileName = "fakeItemA.png",
+                PictureEncoded = ""
             },
             new()
             {
@@ -78,7 +79,8 @@ public class CatalogControllerTest
                 Name = "fakeItemB",
                 CatalogTypeId = 2,
                 CatalogBrandId = 1,
-                PictureFileName = "fakeItemB.png"
+                PictureFileName = "fakeItemB.png",
+                PictureEncoded = ""
             },
             new()
             {
@@ -86,7 +88,8 @@ public class CatalogControllerTest
                 Name = "fakeItemC",
                 CatalogTypeId = 2,
                 CatalogBrandId = 1,
-                PictureFileName = "fakeItemC.png"
+                PictureFileName = "fakeItemC.png",
+                PictureEncoded = ""
             },
             new()
             {
@@ -94,7 +97,8 @@ public class CatalogControllerTest
                 Name = "fakeItemD",
                 CatalogTypeId = 2,
                 CatalogBrandId = 1,
-                PictureFileName = "fakeItemD.png"
+                PictureFileName = "fakeItemD.png",
+                PictureEncoded = ""
             },
             new()
             {
@@ -102,7 +106,8 @@ public class CatalogControllerTest
                 Name = "fakeItemE",
                 CatalogTypeId = 2,
                 CatalogBrandId = 1,
-                PictureFileName = "fakeItemE.png"
+                PictureFileName = "fakeItemE.png",
+                PictureEncoded = ""
             },
             new()
             {
@@ -110,7 +115,8 @@ public class CatalogControllerTest
                 Name = "fakeItemF",
                 CatalogTypeId = 2,
                 CatalogBrandId = 1,
-                PictureFileName = "fakeItemF.png"
+                PictureFileName = "fakeItemF.png",
+                PictureEncoded = ""
             }
         };
     }

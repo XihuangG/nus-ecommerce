@@ -24,6 +24,7 @@ message CatalogItemResponse {
     double price=4;
     string picture_file_name=5;
     string picture_uri=6;
+	string picture_encoded=7;
     CatalogType catalog_type=8;
     CatalogBrand catalog_brand=10;
     int32 available_stock=11;

@@ -50,7 +50,7 @@ namespace Catalog.API.Infrastructure.Migrations
                     CatalogBrandId = table.Column<int>(nullable: false),
                     CatalogTypeId = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(maxLength: 50, nullable: false),
+                    Name = table.Column<string>(maxLength: 250, nullable: false),
                     PictureUri = table.Column<string>(nullable: true),
                     Price = table.Column<decimal>(nullable: false)
                 },
