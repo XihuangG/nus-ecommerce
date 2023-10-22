@@ -50,7 +50,10 @@ namespace Microsoft.eShopOnContainers.Services.Identity.API
             services.AddTransient<ILoginService<ApplicationUser>, EFLoginService>();
             services.AddTransient<IRedirectService, RedirectService>();
 
+
             var connectionString = Configuration["ConnectionString"];
+            services.AddScoped<IProfileQueries>(sp => new ProfileQueries(connectionString));
+
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
 
             // Adds IdentityServer
