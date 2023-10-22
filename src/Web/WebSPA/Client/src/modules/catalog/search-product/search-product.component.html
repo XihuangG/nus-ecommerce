@@ -1,0 +1,29 @@
+<div class ="container">
+    <p>Search result for {{id}}</p>
+</div>
+<div class ="container">
+    <div class="form-group">
+        <input type="product" 
+        class="form-control form-style" 
+        id="search-text" 
+        aria-describedby="search-text" 
+        placeholder="Search smart-commerce.."
+        #searchText>
+
+        <img src="../../assets/images/search.png" (click)=" search(searchText)" height="20px" width="20px"/>
+
+    </div>
+</div>
+
+<body>
+    <div class="product-listing" *ngFor="let item of catalog?.data">
+        <img class="product-image" src="{{item.pictureUri}}">
+        <div class="product-details">
+            <h2>{{item.name}}</h2>
+            <p><strong>Price:</strong>{{item.price}}</p>
+            <p><strong>Description:</strong>{{item.Description}}</p>
+        </div>
+    </div>
+    <!-- Add more product listings as needed -->
+
+</body>

@@ -1,11 +1,13 @@
-﻿import { Injectable } from '@angular/core';
+﻿﻿import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from "@angular/common/http";
 
 import { Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { map,catchError, tap } from 'rxjs/operators';
 
 import { SecurityService } from './security.service';
 import { Guid } from '../../../guid';
+import { IUserDetails } from '../models/userdetails.model';
+
 
 // Implementing a Retry-Circuit breaker policy 
 // is pending to do for the SPA app
@@ -27,6 +29,10 @@ export class DataService {
             );
     }
 
+    getRecommendedItems(url: string):Observable<string[]>{
+        return this.http.get(url).pipe(map((result:any)=>result.recommend));
+    }
+
     postWithId(url: string, data: any, params?: any): Observable<Response> {
         return this.doPost(url, data, true, params);
     }
@@ -37,6 +43,12 @@ export class DataService {
 
     putWithId(url: string, data: any, params?: any): Observable<Response> {
         return this.doPut(url, data, true, params);
+    }
+
+    getSearchText(url:string):Observable<Response>{
+        return this.http.get(url).pipe(map((result:Response) =>{
+            return result;
+        }))
     }
 
     private doPost(url: string, data: any, needId: boolean, params?: any): Observable<Response> {

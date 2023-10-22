@@ -7,6 +7,7 @@ import { SecurityService } from './shared/services/security.service';
 import { ConfigurationService } from './shared/services/configuration.service';
 import { SignalrService } from './shared/services/signalr.service';
 import { ToastrService } from 'ngx-toastr';
+import { ICarouselImage } from './shared/models/carouselImage';
 
 /*
  * App Component
@@ -20,6 +21,24 @@ import { ToastrService } from 'ngx-toastr';
 export class AppComponent implements OnInit {
     Authenticated: boolean = false;
     subscription: Subscription;
+
+    parentImages: ICarouselImage[] = [
+        {
+          src: '/assets/images/header.jpg',
+          caption: 'Standard digital clock',
+          alt: ''
+        },
+        {
+          src: '/assets/images/logo.svg',
+          caption: 'Digital clock with date, weather, and steps',
+          alt: ''
+        },
+        {
+          src: '/assets/images/smart-ecommerce.jpg',
+          caption: 'Pokemon themed watch face',
+          alt: '',
+        }
+      ];
 
     constructor(private titleService: Title,
         public router: Router,
@@ -46,4 +65,9 @@ export class AppComponent implements OnInit {
     public setTitle(newTitle: string) {
         this.titleService.setTitle('eShopOnContainers');
     }
+    
+    public returnHome(){
+        this.router.navigate(['/catalog'])
+    }
+    
 }

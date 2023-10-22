@@ -9,4 +9,6 @@ export interface ICatalogItem {
     catalogTypeId: number;
     catalogType: string;
     units: number;
+    availableStock: number;
+    pictureEncoded: string;
 }

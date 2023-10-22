@@ -1,42 +1,39 @@
 <section class="esh-catalog-filters">
-    <div class="container">
-        <div class="alert alert-warning esh-catalog-alert" role="alert" [hidden]="!errorReceived">
-            Error requesting catalog products, please try later on
-        </div>
-        <div class="esh-catalog-filters-wrapper d-flex align-items-end  mt-3">
-            <div class="esh-catalog-filter-wrapper">
-                <label class="esh-catalog-label" for="brand">Brand</label>
-                <select class="esh-catalog-filter form-control" id="brand" (change)="onBrandFilterChanged($event, $event.target.value)">
-                    <option *ngFor="let brand of brands" [value]="brand.id">{{brand.brand}}</option>
-                </select>
-            </div>
-            <div class="esh-catalog-filter-wrapper">
-                <label class="esh-catalog-label" for="type">Type</label>
-                <select class="esh-catalog-filter form-control" id="type" (change)="onTypeFilterChanged($event, $event.target.value)">
-                    <option *ngFor="let type of types" [value]="type.id">{{type.type}}</option>
-                </select>
-            </div>
-            <button 
-                type="button" 
-                class="btn btn-primary"
-                (click)="onFilterApplied($event)">Apply</button>
-        </div>
+    <div class ="container">
+        <app-carousel-image [images]="parentImages"></app-carousel-image>
     </div>
 </section>
+<span>
 
+</span>
+
+<div class ="container">
+    <div class="form-group">
+        <input type="product" 
+        class="form-control form-style" 
+        id="search-text" 
+        aria-describedby="search-text" 
+        placeholder="Search smart-commerce.." 
+        #searchText>
+
+        <img src="../../assets/images/search.png" (click)="search(searchText)" height="20px" width="20px"/>
+
+    </div>
+</div>
 <div class="container">
-    <div *ngIf="catalog?.data.length > 0">
-        <esh-pager [model]="paginationInfo" (changed)="onPageChanged($event)"></esh-pager>
-
+    <span *ngIf="filteredCatalogsItem?.length > 0">
+        Hot Items Recommended for you!
+    </span>
+    <div *ngIf="filteredCatalogsItem?.length > 0">
         <div class="esh-catalog-items row">
             <div class="col-12 col-sm-6 col-md-4 col-lg-3" 
-                 *ngFor="let item of catalog?.data">
-                <div [ngClass]="{'esh-catalog-item': true, 'is-disabled': !authenticated }" (click)="addToCart(item)">
+                 *ngFor="let item of filteredCatalogsItem">
+                <div [ngClass]="{'esh-catalog-item': true, 'is-disabled': !authenticated }" (click)="open(item)">
                     <div class="esh-catalog-thumbnail-wrapper">
                         <div class="esh-catalog-thumbnail-icon d-flex justify-content-center">
                             <img class="esh-catalog-thumbnail-icon-svg" src="assets/images/add.svg" />
                         </div>
-                        <img class="esh-catalog-thumbnail" src="{{item.pictureUri}}" />
+                        <img class="esh-catalog-thumbnail" src="{{item.pictureEncoded}}" />
                     </div>
                     <div class="esh-catalog-details d-flex justify-content-between align-items-center">
                         <div class="esh-catalog-name ml-3">
@@ -49,11 +46,8 @@
                 </div>
             </div>
         </div>
-
-        <esh-pager [model]="paginationInfo" (changed)="onPageChanged($event)"></esh-pager>
     </div>
-    <div *ngIf="catalog?.data.length == 0">
+    <div *ngIf="filteredCatalogsItem?.length == 0">
         <span>THERE ARE NO RESULTS THAT MATCH YOUR SEARCH</span>
     </div>
 </div>
-

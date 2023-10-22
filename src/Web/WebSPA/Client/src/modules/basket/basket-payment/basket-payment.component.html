@@ -1,0 +1,20 @@
+
+<div class="modal-header">
+    <h4 class="modal-title"> Checking out Cart </h4>
+    <button type="button" class="close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <img class="img-responsive" src="../../../assets/images/payment-qr.jpeg" height="200px" width="200px"/>
+  </div>
+  <div class="modal-body">
+      <p>Cart total price: ${{totalPrice}}</p>
+  </div>
+  <div class="modal-body">
+      <p> Currently we are in the beta phase and only PayNow are accepted</p>
+      <p> Please scan the above QR code to make payment. We will track your payment and let you know the next step.</p>
+  </div>
+  <div class="modal-footer">
+      <button btn="btn btn-primary"> Checkout </button>
+  </div>

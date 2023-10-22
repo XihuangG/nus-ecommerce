@@ -1,0 +1,16 @@
+.product-listing {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.product-image {
+    max-width: 150px;
+    max-height: 150px;
+    margin-right: 10px;
+}
+.product-details {
+    flex: 1;
+}
