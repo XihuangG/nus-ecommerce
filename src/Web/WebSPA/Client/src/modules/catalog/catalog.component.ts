@@ -1,20 +1,20 @@
-import { Component, OnInit }    from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription, throwError } from 'rxjs';
-import { catchError }           from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 
-import { CatalogService }       from './catalog.service';
+import { CatalogService } from './catalog.service';
 import { ConfigurationService } from '../shared/services/configuration.service';
-import { ICatalog }             from '../shared/models/catalog.model';
-import { ICatalogItem }         from '../shared/models/catalogItem.model';
-import { ICatalogType }         from '../shared/models/catalogType.model';
-import { ICatalogBrand }        from '../shared/models/catalogBrand.model';
-import { IPager }               from '../shared/models/pager.model';
-import { BasketWrapperService}  from '../shared/services/basket.wrapper.service';
-import { SecurityService }      from '../shared/services/security.service';
+import { ICatalog } from '../shared/models/catalog.model';
+import { ICatalogItem } from '../shared/models/catalogItem.model';
+import { ICatalogType } from '../shared/models/catalogType.model';
+import { ICatalogBrand } from '../shared/models/catalogBrand.model';
+import { IPager } from '../shared/models/pager.model';
+import { BasketWrapperService } from '../shared/services/basket.wrapper.service';
+import { SecurityService } from '../shared/services/security.service';
 import { ICarouselImage } from 'modules/shared/models/carouselImage';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ViewProduct } from './view-product/view-product.component';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'esh-catalog .esh-catalog .mb-5',
@@ -37,32 +37,32 @@ export class CatalogComponent implements OnInit {
 
     parentImages: ICarouselImage[] = [
         {
-          src: '/assets/images/header.jpg',
-          caption: 'Standard digital clock',
-          alt: ''
+            src: '/assets/images/header.jpg',
+            caption: 'Standard digital clock',
+            alt: ''
         },
         {
-          src: '/assets/images/logo.svg',
-          caption: 'Digital clock with date, weather, and steps',
-          alt: ''
+            src: '/assets/images/logo.svg',
+            caption: 'Digital clock with date, weather, and steps',
+            alt: ''
         },
         {
-          src: '/assets/images/smart-ecommerce.jpg',
-          caption: 'Pokemon themed watch face',
-          alt: '',
+            src: '/assets/images/smart-ecommerce.jpg',
+            caption: 'Pokemon themed watch face',
+            alt: '',
         }
-      ];
+    ];
 
 
-    constructor(private service: CatalogService, private basketService: BasketWrapperService, private configurationService: ConfigurationService, 
-        private securityService: SecurityService, private modalService:NgbModal, private router: Router){
+    constructor(private service: CatalogService, private basketService: BasketWrapperService, private configurationService: ConfigurationService,
+        private securityService: SecurityService, private modalService: NgbModal, private router: Router) {
         this.authenticated = securityService.IsAuthorized;
     }
 
-    ngOnInit(){
+    ngOnInit() {
 
         // Configuration Settings:
-        if (this.configurationService.isReady) 
+        if (this.configurationService.isReady)
             this.loadData();
         else
             this.configurationService.settingsLoaded$.subscribe(x => {
@@ -72,11 +72,11 @@ export class CatalogComponent implements OnInit {
         // Subscribe to login and logout observable
         this.authSubscription = this.securityService.authenticationChallenge$.subscribe(res => {
             this.authenticated = res;
-            if(this.authenticated){
+            if (this.authenticated) {
                 console.log(1);
                 console.log(this.getRecommendedItems(1));
             }
-            else{
+            else {
                 console.log(0);
                 console.log(this.getRecommendedItems(0));
             }
@@ -92,7 +92,7 @@ export class CatalogComponent implements OnInit {
 
     onFilterApplied(event: any) {
         event.preventDefault();
-        
+
         this.brandSelected = this.brandSelected && this.brandSelected.toString() != "null" ? this.brandSelected : null;
         this.typeSelected = this.typeSelected && this.typeSelected.toString() != "null" ? this.typeSelected : null;
         this.paginationInfo.actualPage = 0;
@@ -113,16 +113,16 @@ export class CatalogComponent implements OnInit {
         this.basketService.addItemToBasket(item);
     }
 
-    getRecommendedItems(id: number){
-        this.service.getRecommendItems(id).subscribe((recommended : string[]) =>{
+    getRecommendedItems(id: number) {
+        this.service.getRecommendItems(id).subscribe((recommended: string[]) => {
             this.recommended = recommended;
             this.initializeFilter(this.recommended);
         });
     }
 
-    initializeFilter(arr: string []) : ICatalogItem []{
-        for (let i = 0; i < 12; i++){
-            this.service.getProduct(parseInt(arr[i])).subscribe(res =>{
+    initializeFilter(arr: string[]): ICatalogItem[] {
+        for (let i = 0; i < 12; i++) {
+            this.service.getProduct(parseInt(arr[i])).subscribe(res => {
                 this.recommendedItems.push(res);
                 this.filteredCatalogsItem.push(res);
                 console.log(res);
@@ -131,12 +131,16 @@ export class CatalogComponent implements OnInit {
         return this.filteredCatalogsItem;
     }
 
-    search(searchText){
+    search(searchText) {
         ("Initializing....")
         console.log(searchText.value);
-        this.router.navigate(['search/',searchText.value],
-        {queryParams: {pageSize:15,
-                    pageIndex:0}});
+        this.router.navigate(['search/', searchText.value],
+            {
+                queryParams: {
+                    pageSize: 15,
+                    pageIndex: 0
+                }
+            });
     }
 
     getCatalog(pageSize: number, pageIndex: number, brand?: number, type?: number) {
@@ -146,20 +150,20 @@ export class CatalogComponent implements OnInit {
             .subscribe(catalog => {
                 this.catalog = catalog;
                 this.paginationInfo = {
-                    actualPage : catalog.pageIndex,
-                    itemsPage : catalog.pageSize,
-                    totalItems : catalog.count,
+                    actualPage: catalog.pageIndex,
+                    itemsPage: catalog.pageSize,
+                    totalItems: catalog.count,
                     totalPages: Math.ceil(catalog.count / catalog.pageSize),
                     items: catalog.pageSize
                 };
-        });
+            });
 
     }
 
-    open(item:ICatalogItem){
-        const modal = this.modalService.open(ViewProduct,{ size: 'md', backdrop: 'static', centered:true });
+    open(item: ICatalogItem) {
+        const modal = this.modalService.open(ViewProduct, { size: 'md', backdrop: 'static', centered: true });
         modal.componentInstance.fromParent = item;
-        modal.result.then((result) =>{
+        modal.result.then((result) => {
             console.log(result);
         })
     }
@@ -186,3 +190,4 @@ export class CatalogComponent implements OnInit {
         return throwError(() => error);
     }
 }
+
