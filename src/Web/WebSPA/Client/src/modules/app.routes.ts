@@ -7,6 +7,7 @@ import { OrdersDetailComponent } from './orders/orders-detail/orders-detail.comp
 import { OrdersNewComponent } from './orders/orders-new/orders-new.component';
 import { ManageProductComponent } from './catalog/manage-product/manage-product.component';
 import { EditProductComponent } from './catalog/edit-product/edit-product.component';
+import { SearchProductComponent } from './catalog/search-product/search-product.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'catalog', pathMatch: 'full' },
@@ -17,6 +18,8 @@ export const routes: Routes = [
     { path: 'order', component: OrdersNewComponent },
     { path: 'manage-product', component: ManageProductComponent },
     { path: 'edit-product/:id', component: EditProductComponent },
+    { path: 'manage-product', component: ManageProductComponent },
+    { path: 'search/:text', component: SearchProductComponent}
 ];
 
-export const routing = RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' });
+export const routing = RouterModule.forRoot(routes, {});

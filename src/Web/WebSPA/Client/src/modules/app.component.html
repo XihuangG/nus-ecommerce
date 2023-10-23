@@ -1,14 +1,10 @@
-<header class="esh-app-header" [ngClass]="{'esh-app-header':true, 'esh-app-header--expanded': router.url === '/catalog'}">
-    <div class="esh-app-header-promo">
-        <span class="esh-app-header-promo-title">All T-SHIRTS</span>
-        <span class="esh-app-header-promo-subtitle">On sale this weekend</span>
-    </div>
+<header>
     <div class="container">
         <article class="d-flex align-content-center justify-content-between">
             <section>
-                <a routerLink="catalog">
-                    <img class="esh-app-header-brand" src="assets/images/logo_color.svg" />
-                </a>
+                <button title= 'button' onClick='returnHome()' [routerLink]="['/catalog']">
+                    <img title='image' class="esh-app-header-brand" src="assets/images/smart-commerce.png" />
+                </button>
             </section>
 
             <section class="d-flex align-content-center justify-content-between">
@@ -21,20 +17,4 @@
 
 <!-- component routing placeholder -->
 <router-outlet></router-outlet>
-
-<footer class="esh-app-footer">
-    <div class="container">
-        <article class="d-flex w-100 h-100 justify-content-between align-items-center">
-
-            <section>
-                <img class="esh-app-footer-brand" src="assets/images/logo.svg" />
-            </section>
-
-            <section>
-                © e-Shoponcontainers. All rights reserved
-            </section>
-
-        </article>
-    </div>
-</footer>
-
+<footer-app></footer-app>

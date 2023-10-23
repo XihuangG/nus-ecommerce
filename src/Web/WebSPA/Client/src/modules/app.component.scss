@@ -60,17 +60,5 @@
         font-size: $font-size-xxl;
     }
 
-    &-footer {
-        background-color: $color-secondary-bright;
-        color: $color-brightest;
-        font-size: $font-size-m;
-        display: flex;
-        height: 7rem;
-        margin-top: auto;
-
-        &-brand {
-            height: auto;
-            width: 104px;
-        }
-    }
+   
 }
