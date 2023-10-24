@@ -21,7 +21,7 @@
         width: 1.5rem;
     }
 
-    &-drop {
+    &-drop{
         background: $color-brightest;
         height: 0;
         min-width: 10rem;
@@ -29,11 +29,13 @@
         position: absolute;
         right: 0;
         top: 2.5rem;
-        transition: height $animation-speed-default;
+        transition: all 0.25s ease;
     }
 
     &:hover &-drop {
-        height: 5rem;
+        visibility: visible;
+        z-index: 9;
+        height: 7.5rem;
     }
 
     &-item {

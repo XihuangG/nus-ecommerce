@@ -14,6 +14,8 @@ export class Identity implements OnInit  {
     authenticated: boolean = false;
     private subscription: Subscription;
     private userName: string = '';
+    private id:string = '';
+    private name:string = '';
 
     constructor(private service: SecurityService, private signalrService: SignalrService) {
 
@@ -33,8 +35,11 @@ export class Identity implements OnInit  {
         this.authenticated = this.service.IsAuthorized;
 
         if (this.authenticated) {
-            if (this.service.UserData)
+            if (this.service.UserData){
                 this.userName = this.service.UserData.email;
+                this.name = this.service.UserData.name;                
+            }
+                
         }
     }
 
