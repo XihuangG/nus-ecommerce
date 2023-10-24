@@ -276,9 +276,9 @@ public class CatalogController : ControllerBase
         return await _catalogContext.CatalogBrands.ToListAsync();
     }
 
-    //PUT api/v1/[controller]/items
+    //POST api/v1/[controller]/items
     [Route("items")]
-    [HttpPut]
+    [HttpPost]
     [ProducesResponseType((int)HttpStatusCode.NotFound)]
     [ProducesResponseType((int)HttpStatusCode.Created)]
     public async Task<ActionResult> UpdateProductAsync([FromBody] CatalogItem productToUpdate)
@@ -316,9 +316,9 @@ public class CatalogController : ControllerBase
         return CreatedAtAction(nameof(ItemByIdAsync), new { id = productToUpdate.Id }, null);
     }
 
-    //POST api/v1/[controller]/items
+    //PUT api/v1/[controller]/items
     [Route("items")]
-    [HttpPost]
+    [HttpPut]
     [ProducesResponseType((int)HttpStatusCode.Created)]
     public async Task<ActionResult> CreateProductAsync([FromBody] CatalogItem product)
     {
