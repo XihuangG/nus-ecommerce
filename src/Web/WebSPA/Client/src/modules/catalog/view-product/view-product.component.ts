@@ -7,6 +7,7 @@ import { BasketWrapperService } from 'modules/shared/services/basket.wrapper.ser
 import { BasketService } from 'modules/basket/basket.service';
 import { IBasket } from 'modules/shared/models/basket.model';
 import { IBasketItem } from 'modules/shared/models/basketItem.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'view-product-info',
@@ -26,7 +27,7 @@ export class ViewProduct implements OnInit {
     imageSrc: string = '';
 
     constructor(private service: CatalogService, public activeModal: NgbActiveModal, private securityService: SecurityService, private basketWrapperService: BasketWrapperService,
-        private basketService: BasketService) {
+        private basketService: BasketService, private toastr: ToastrService) {
         this.authenticated = securityService.IsAuthorized;
 
     }
@@ -52,12 +53,19 @@ export class ViewProduct implements OnInit {
         if (!this.authenticated) {
             return;
         }
-        //add remaining to cart
+
+        //add Product to cart
         console.log(count.value);
-        var x = count.value;
+        const x = count.value;
         for (let i = 0; i < x; i++) {
             this.basketWrapperService.addItemToBasket(this.item);
         }
+
+        // Show success message
+        this.toastr.success('Product added to cart', 'Success');
+
+        // Close the view-product modal
+        this.closeModal(true);
     }
 
     closeModal(sendData) {
