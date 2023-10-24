@@ -29,7 +29,6 @@ export class ViewProduct implements OnInit {
     constructor(private service: CatalogService, public activeModal: NgbActiveModal, private securityService: SecurityService, private basketWrapperService: BasketWrapperService,
         private basketService: BasketService, private toastr: ToastrService) {
         this.authenticated = securityService.IsAuthorized;
-
     }
 
     ngOnInit(): void {
@@ -45,9 +44,7 @@ export class ViewProduct implements OnInit {
                 }
             }
         });
-
     }
-
 
     addToCart(count) {
         if (!this.authenticated) {

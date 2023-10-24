@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-
 import { CatalogService } from './catalog.service';
 import { ConfigurationService } from '../shared/services/configuration.service';
 import { ICatalog } from '../shared/models/catalog.model';
@@ -60,7 +59,6 @@ export class CatalogComponent implements OnInit {
     }
 
     ngOnInit() {
-
         // Configuration Settings:
         if (this.configurationService.isReady)
             this.loadData();
@@ -92,7 +90,6 @@ export class CatalogComponent implements OnInit {
 
     onFilterApplied(event: any) {
         event.preventDefault();
-
         this.brandSelected = this.brandSelected && this.brandSelected.toString() != "null" ? this.brandSelected : null;
         this.typeSelected = this.typeSelected && this.typeSelected.toString() != "null" ? this.typeSelected : null;
         this.paginationInfo.actualPage = 0;

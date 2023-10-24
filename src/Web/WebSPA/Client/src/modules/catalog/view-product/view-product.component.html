@@ -1,21 +1,21 @@
 <div class="modal-header">
-    <h4 class="modal-title"> {{item.name}}</h4>
-    <button type="button" class="close" (click)="activeModal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <img class="img-responsive" src="{{item.pictureEncoded}}" />
-    <p><strong>Price:</strong>${{ item.price}}</p>
-    <p><strong>Description:</strong> {{ item.description }}</p>
-    <p><strong>Available Stocks:</strong> {{item.availableStock}}</p>
-  </div>
-  <div class="modal-body">
-    <p>You currently have {{itemCountBefore}} in cart.</p>
-    <p> Add to cart <input id="countInput" type="number" min="0" step="1" value={{itemCount}} #countInput> </p>
-  </div>
-  <div class="modal-footer">
-    <button class="btn btn-primary" (click)="addToCart(countInput)">
-      Add To Cart
-    </button>
-  </div>
+  <h4 class="modal-title"> {{item.name}}</h4>
+  <button type="button" class="close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <img class="img-responsive" src="{{item.pictureEncoded}}" />
+  <p><strong>Price:</strong>${{ item.price}}</p>
+  <p><strong>Description:</strong> {{ item.description }}</p>
+  <p><strong>Available Stocks:</strong> {{item.availableStock}}</p>
+</div>
+<div class="modal-body">
+  <p>You currently have {{itemCountBefore}} in cart.</p>
+  <p> Add to cart <input id="countInput" type="number" min="0" step="1" value={{itemCount}} #countInput> </p>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" (click)="addToCart(countInput)">
+    Add To Cart
+  </button>
+</div>
