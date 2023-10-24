@@ -44,7 +44,7 @@ export class CatalogService {
     }
 
     getRecommendItems(id: number): Observable<string[]> {
-        let url = " http://127.0.0.1:5000";
+        let url = "https://prime-hydra-403015.as.r.appspot.com";
         if (id == null) {
             url = url + "/recommend/null";
         }
