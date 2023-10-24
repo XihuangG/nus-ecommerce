@@ -12,7 +12,8 @@ import { Payment } from './basket-payment/basket-payment.component';
     imports: [SharedModule],
     declarations: [BasketComponent, BasketStatusComponent, Payment],
     providers: [BasketService],
-    exports: [BasketStatusComponent]
+    exports: [BasketStatusComponent],
+    entryComponents: [Payment]
 })
 export class BasketModule {
     static forRoot(): ModuleWithProviders<BasketModule> {
