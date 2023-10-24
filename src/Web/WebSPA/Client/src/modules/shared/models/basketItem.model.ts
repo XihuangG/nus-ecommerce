@@ -6,4 +6,5 @@ export interface IBasketItem {
     oldUnitPrice: number;
     quantity: number;
     pictureUrl: string;
+    pictureEncoded: string;
 }
