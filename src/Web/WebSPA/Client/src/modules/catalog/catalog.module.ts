@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common'
+import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { CatalogComponent } from './catalog.component';
 import { CatalogService } from './catalog.service';
@@ -11,10 +11,10 @@ import { SearchProductComponent } from './search-product/search-product.componen
 import { ViewProduct } from './view-product/view-product.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-
 @NgModule({
     imports: [BrowserModule, SharedModule, CommonModule, NgbModule],
     declarations: [CatalogComponent, ManageProductComponent, EditProductComponent, SearchProductComponent, ViewProduct],
-    providers: [CatalogService]
+    providers: [CatalogService],
+    entryComponents: [ViewProduct]
 })
 export class CatalogModule { }

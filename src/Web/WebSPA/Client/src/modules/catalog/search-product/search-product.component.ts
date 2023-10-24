@@ -57,6 +57,7 @@ export class SearchProductComponent implements OnInit {
     }
 
     openViewProductModal(item: any) {
+        console.log('Open view product modal triggered.');
         const modalRef = this.modalService.open(ViewProduct, { size: 'lg' });
         modalRef.componentInstance.fromParent = item;
     }
