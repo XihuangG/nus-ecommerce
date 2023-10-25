@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
-
 import { DataService } from '../shared/services/data.service';
 import { ConfigurationService } from '../shared/services/configuration.service';
 import { ICatalog } from '../shared/models/catalog.model';
 import { ICatalogBrand } from '../shared/models/catalogBrand.model';
 import { ICatalogType } from '../shared/models/catalogType.model';
-
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { ICatalogItem } from 'modules/shared/models/catalogItem.model';
@@ -63,10 +61,7 @@ export class CatalogService {
         return this.service.getSearchText(url).pipe<ICatalog>(tap((response: any) => {
             return response;
         }))
-
     }
-
-
 
     getBrands(): Observable<ICatalogBrand[]> {
         return this.service.get(this.brandUrl).pipe<ICatalogBrand[]>(tap((response: any) => {
