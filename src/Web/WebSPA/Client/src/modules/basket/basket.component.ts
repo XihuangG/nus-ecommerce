@@ -32,7 +32,6 @@ export class BasketComponent implements OnInit {
                 }
                 )
             }
-            console.log(basket.items);
             this.calculateTotalPrice();
         });
     }
