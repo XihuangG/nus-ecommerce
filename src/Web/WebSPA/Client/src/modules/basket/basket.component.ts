@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CatalogService } from 'modules/catalog/catalog.service';
 
 import { Observable } from 'rxjs';
 
@@ -20,11 +21,18 @@ export class BasketComponent implements OnInit {
     basket: IBasket;
     totalPrice: number = 0;
 
-    constructor(private basketSerive: BasketService, private router: Router, private basketWrapperService: BasketWrapperService, private modalService:NgbModal) { }
+    constructor(private basketSerive: BasketService, private catalogService: CatalogService, private router: Router, private basketWrapperService: BasketWrapperService, private modalService:NgbModal) { }
 
     ngOnInit() {
         this.basketSerive.getBasket().subscribe(basket => {
             this.basket = basket;
+            for (let i =0; i < basket.items.length; i++){
+                this.catalogService.getProduct(basket.items[i].productId).subscribe(res =>{
+                    basket.items[i].pictureEncoded = res.pictureEncoded;
+                }
+                )
+            }
+            console.log(basket.items);
             this.calculateTotalPrice();
         });
     }
